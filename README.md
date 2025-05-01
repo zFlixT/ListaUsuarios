@@ -19,6 +19,7 @@
 
 ## 📁 Estructura del proyecto
 
+```
 ListaUsuarios/
 ├── Captutas/
 ├── src/ 
@@ -38,6 +39,7 @@ ListaUsuarios/
 │ └── application.properties 
 ├── pom.xml 
 └── README.md
+```
 
 ## ⚙️ Requisitos
 
