@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Lista</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+    
+        h1 {
+            color: #2c3e50;
+            margin-top: 40px;
+            font-size: 2rem;
+        }
+    
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 30px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    
+        thead {
+            background-color: #34495e;
+            color: white;
+        }
+    
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+    
+        tr:last-child td {
+            border-bottom: none;
+        }
+    
+        .sin-correo {
+            background-color: #e74c3c;
+            color: white;
+            font-style: italic;
+        }
+    
+        p {
+            margin-top: 60px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 th:text="${title}">Lista de Usuarios</h1>
+    <div th:if="${user.isEmpty()}">
+        <p>No hay usuarios disponibles.</p>
+    </div>
+
+    <div th:unless="${user.isEmpty()}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="users : ${user}">
+                    <td th:text="${users.nombre}"></td>
+                    <td th:text="${users.apellido}"></td>
+                    <td th:if="${users.email != null}" th:text="${users.email}"></td>
+                    <td th:if="${users.email == null}" th:text="'-----------'" th:classappend="${users.email == null} ? 'sin-correo'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
